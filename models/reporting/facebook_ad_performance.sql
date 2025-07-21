@@ -24,6 +24,6 @@ spend,
 impressions,
 link_clicks,
 add_to_cart,
-purchases,
-revenue
+"offsite_conversion.fb_pixel_custom.meal-planning-mvp-purchase" as purchases,
+"offsite_conversion.fb_pixel_custom.meal-planning-mvp-purchase_value" as revenue
 FROM {{ ref('facebook_performance_by_ad') }}
