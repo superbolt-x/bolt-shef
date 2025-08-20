@@ -5,8 +5,8 @@ sources:
   - name: reporting
     schema: reporting
     tables:
-      - name: facebook_ad_performance
-        identifier: shef_facebook_ad_performance
+      - name: facebook_campaign_performance
+        identifier: shef_facebook_campaign_performance
 
       - name: googleads_campaign_performance
         identifier: shef_googleads_campaign_performance
