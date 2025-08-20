@@ -6,7 +6,9 @@ SELECT
 campaign_name,
 campaign_id,
 campaign_effective_status,
-campaign_type_default,
+CASE WHEN campaign_name ~* '_PRO' THEN 'Campaign Type: Prospecting'
+    WHEN campaign_name ~* '_RET' THEN 'Campaign Type: Retargeting'
+END AS campaign_type_default,
 adset_name,
 adset_id,
 adset_effective_status,
