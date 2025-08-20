@@ -24,6 +24,7 @@ amplitude_data as
           {{date_granularity}} as date,
           region, 
           null as campaign_type_default, null as campaign_name,
+          SUM(0) as spend, SUM(0) as clicks, SUM(0) as impressions, SUM(0) as purchases, SUM(0) as revenue,
           COALESCE(SUM(subscribers),0) as subscribers
       FROM dg_amplitude_data
       GROUP BY 1,2,3,4,5,6
@@ -34,7 +35,7 @@ amplitude_data as
 paid_data as
     (SELECT channel, date_granularity, date::date, region, campaign_type_default, campaign_name, 
         COALESCE(SUM(spend),0) as spend, COALESCE(SUM(clicks),0) as clicks, COALESCE(SUM(impressions),0) as impressions, 
-        COALESCE(SUM(purchases),0) as purchases, COALESCE(SUM(revenue),0) as revenue
+        COALESCE(SUM(purchases),0) as purchases, COALESCE(SUM(revenue),0) as revenue, SUM(0) as subscribers
     FROM
         (SELECT 'Meta' as channel, date, date_granularity, region, campaign_type_default, campaign_name, 
             spend, link_clicks as clicks, impressions, purchases, revenue
