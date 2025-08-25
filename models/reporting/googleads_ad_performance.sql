@@ -4,7 +4,8 @@
 
 SELECT
 account_id,
-ad_id,
+ad_id::varchar,
+landing_page,
 campaign_name,
 campaign_id,
 campaign_status,
@@ -23,5 +24,5 @@ impressions,
 clicks,
 conversions as purchases,
 conversions_value as revenue
-
-FROM {{ ref('googleads_performance_by_ad') }}
+FROM {{ ref('googleads_performance_by_ad') }} 
+LEFT JOIN {{ source('gsheet_raw','google_landing_pages') }} USING(ad_id)
