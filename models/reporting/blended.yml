@@ -11,6 +11,12 @@ sources:
       - name: googleads_campaign_performance
         identifier: shef_googleads_campaign_performance
 
+      - name: facebook_ad_performance
+        identifier: shef_facebook_ad_performance
+
+      - name: googleads_ad_performance
+        identifier: shef_googleads_ad_performance
+
   - name: gsheet_raw
     schema: gsheet_raw
     tables:
