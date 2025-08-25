@@ -16,3 +16,6 @@ sources:
     tables:
       - name: amplitude_orders_byregion
         identifier: amplitude_orders_byregion
+
+      - name: google_landing_pages
+        identifier: google_landing_pages
