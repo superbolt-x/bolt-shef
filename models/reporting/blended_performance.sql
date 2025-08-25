@@ -23,29 +23,29 @@ amplitude_data as
           '{{date_granularity}}' as date_granularity,
           {{date_granularity}} as date,
           region, 
-          null as campaign_type_default, null as campaign_name,
+          null as campaign_type_default, null as campaign_name, null as landing_page,
           SUM(0) as spend, SUM(0) as clicks, SUM(0) as impressions, SUM(0) as purchases, SUM(0) as revenue,
           COALESCE(SUM(subscribers),0) as subscribers
       FROM dg_amplitude_data
-      GROUP BY 1,2,3,4,5,6
+      GROUP BY 1,2,3,4,5,6,7
       {% if not loop.last %}UNION ALL
       {% endif %}
     {% endfor %}),
 
 paid_data as
-    (SELECT channel, date_granularity, date::date, region, campaign_type_default, campaign_name, 
+    (SELECT channel, date_granularity, date::date, region, campaign_type_default, campaign_name, landing_page,
         COALESCE(SUM(spend),0) as spend, COALESCE(SUM(clicks),0) as clicks, COALESCE(SUM(impressions),0) as impressions, 
         COALESCE(SUM(purchases),0) as purchases, COALESCE(SUM(revenue),0) as revenue, SUM(0) as subscribers
     FROM
-        (SELECT 'Meta' as channel, date, date_granularity, region, campaign_type_default, campaign_name, 
+        (SELECT 'Meta' as channel, date, date_granularity, region, campaign_type_default, campaign_name, landing_page,
             spend, link_clicks as clicks, impressions, purchases, revenue
         FROM {{ source('reporting','facebook_campaign_performance') }}
         UNION ALL
-        SELECT 'Google Ads' as channel, date, date_granularity, region, campaign_type_default, campaign_name, 
+        SELECT 'Google Ads' as channel, date, date_granularity, region, campaign_type_default, campaign_name, landing_page,
             spend, clicks, impressions, purchases, revenue
         FROM {{ source('reporting','googleads_campaign_performance') }}
         )
-    GROUP BY 1,2,3,4,5,6)
+    GROUP BY 1,2,3,4,5,6,7)
   
 SELECT channel,
     date,
@@ -53,6 +53,7 @@ SELECT channel,
     region,
     campaign_type_default,
     campaign_name,
+    landing_page,
     spend,
     clicks,
     impressions,
