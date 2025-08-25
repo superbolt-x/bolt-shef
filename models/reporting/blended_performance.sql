@@ -39,11 +39,11 @@ paid_data as
     FROM
         (SELECT 'Meta' as channel, date, date_granularity, region, campaign_type_default, campaign_name, landing_page,
             spend, link_clicks as clicks, impressions, purchases, revenue
-        FROM {{ source('reporting','facebook_campaign_performance') }}
+        FROM {{ source('reporting','facebook_ad_performance') }}
         UNION ALL
         SELECT 'Google Ads' as channel, date, date_granularity, region, campaign_type_default, campaign_name, landing_page,
             spend, clicks, impressions, purchases, revenue
-        FROM {{ source('reporting','googleads_campaign_performance') }}
+        FROM {{ source('reporting','googleads_ad_performance') }}
         )
     GROUP BY 1,2,3,4,5,6,7)
   
