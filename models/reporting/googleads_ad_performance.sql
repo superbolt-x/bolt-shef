@@ -4,10 +4,10 @@
 
 SELECT
 account_id,
-ad_id,
+ad.ad_id,
 landing_page,
 campaign_name,
-campaign_id,
+ad.campaign_id,
 campaign_status,
 CASE WHEN campaign_name ~* 'Max' THEN 'Campaign Type: Performance Max'
     ELSE campaign_type_default
@@ -16,7 +16,7 @@ CASE WHEN campaign_name ~* '_NYC' THEN 'NYC'
     WHEN campaign_name ~* '_BayArea' THEN 'Bay Area'
 END AS region,
 ad_group_name,
-ad_group_id,
+ad.ad_group_id,
 date,
 date_granularity,
 spend,
