@@ -17,6 +17,9 @@ sources:
       - name: googleads_ad_performance
         identifier: shef_googleads_ad_performance
 
+      - name: googleads_asset_group_performance
+        identifier: shef_googleads_asset_group_performance
+
   - name: gsheet_raw
     schema: gsheet_raw
     tables:
