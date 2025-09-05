@@ -5,7 +5,7 @@
 SELECT 
 account_id,
 campaign_name,
-campaign_id,
+ag.campaign_id,
 campaign_status,
 CASE WHEN campaign_name ~* 'Max' THEN 'Campaign Type: Performance Max'
     ELSE campaign_type_default
