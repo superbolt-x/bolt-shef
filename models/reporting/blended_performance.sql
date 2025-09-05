@@ -44,6 +44,10 @@ paid_data as
         SELECT 'Google Ads' as channel, date, date_granularity, region, campaign_type_default, campaign_name, landing_page,
             spend, clicks, impressions, purchases, revenue
         FROM {{ source('reporting','googleads_ad_performance') }}
+        UNION ALL
+        SELECT 'Google Ads' as channel, date, date_granularity, region, campaign_type_default, campaign_name, landing_page,
+            spend, clicks, impressions, purchases, revenue
+        FROM {{ source('reporting','googleads_asset_group_performance') }}
         )
     GROUP BY 1,2,3,4,5,6,7)
   
