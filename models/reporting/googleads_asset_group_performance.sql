@@ -7,7 +7,12 @@ account_id,
 campaign_name,
 campaign_id,
 campaign_status,
-campaign_type_default,
+CASE WHEN campaign_name ~* 'Max' THEN 'Campaign Type: Performance Max'
+    ELSE campaign_type_default
+END AS campaign_type_default,
+CASE WHEN campaign_name ~* '_NYC' THEN 'NYC'
+    WHEN campaign_name ~* '_BayArea' THEN 'Bay Area'
+END AS region,
 asset_group_name,
 ag.asset_group_id,
 asset_group_status,
