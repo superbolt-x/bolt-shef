@@ -14,6 +14,9 @@ CASE WHEN campaign_name ~* 'Max' THEN 'Campaign Type: Performance Max'
 END AS campaign_type_default,
 CASE WHEN campaign_name ~* '_NYC' THEN 'NYC'
     WHEN campaign_name ~* '_BayArea' THEN 'Bay Area'
+    WHEN campaign_name ~* '_Seattle' THEN 'Seattle'
+    WHEN campaign_name ~* '_Chicago' THEN 'Chicago'
+    WHEN campaign_name ~* '_LA' THEN 'LA'
 END AS region,
 ad_group_name,
 ad.ad_group_id,
