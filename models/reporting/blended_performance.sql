@@ -11,12 +11,15 @@ WITH initial_amplitude_data as
   UNION ALL
   SELECT 'Bay Area' as region, date::date as date, COALESCE(SUM(san_francisco_ca),0) as subscribers
   FROM {{ source('gsheet_raw','amplitude_orders_byregion') }}
+  GROUP BY 1,2
   UNION ALL
   SELECT 'Seattle' as region, date::date as date, COALESCE(SUM(seattle_tacoma_wa),0) as subscribers
   FROM {{ source('gsheet_raw','amplitude_orders_byregion') }}
+  GROUP BY 1,2
   UNION ALL
   SELECT 'Chicago' as region, date::date as date, COALESCE(SUM(chicago_il),0) as subscribers
   FROM {{ source('gsheet_raw','amplitude_orders_byregion') }}
+  GROUP BY 1,2
   UNION ALL
   SELECT 'LA' as region, date::date as date, COALESCE(SUM(los_angeles_ca),0) as subscribers
   FROM {{ source('gsheet_raw','amplitude_orders_byregion') }}
