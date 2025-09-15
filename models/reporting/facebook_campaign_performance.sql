@@ -9,7 +9,8 @@ campaign_effective_status,
 CASE WHEN campaign_name ~* '_PRO' THEN 'Campaign Type: Prospecting'
     WHEN campaign_name ~* '_RET' THEN 'Campaign Type: Retargeting'
 END AS campaign_type_default,
-CASE WHEN campaign_name ~* '_NYC' THEN 'NYC'
+CASE WHEN campaign_name ~* 'NYC-BayArea-LA-Seattle-Chicago' THEN 'All' 
+    WHEN campaign_name ~* '_NYC' THEN 'NYC'
     WHEN campaign_name ~* '_BayArea' THEN 'Bay Area'
     WHEN campaign_name ~* '_Seattle' THEN 'Seattle'
     WHEN campaign_name ~* '_Chicago' THEN 'Chicago'
