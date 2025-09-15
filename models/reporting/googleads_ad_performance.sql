@@ -17,6 +17,7 @@ CASE WHEN campaign_name ~* '_NYC' THEN 'NYC'
     WHEN campaign_name ~* '_Seattle' THEN 'Seattle'
     WHEN campaign_name ~* '_Chicago' THEN 'Chicago'
     WHEN campaign_name ~* '_LA' THEN 'LA'
+    ELSE 'Multiple'
 END AS region,
 ad_group_name,
 ad.ad_group_id,
